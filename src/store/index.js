@@ -61,6 +61,7 @@ export default new Vuex.Store({
           commit("SET_ARRAY", arrayToSort);
         }
       }
+      commit("SET_SORTED", false);
     },
     async selectionSort({ commit, state }, delay) {
       let arrayToSort = state.array;
@@ -78,6 +79,7 @@ export default new Vuex.Store({
         await sleep(delay);
         commit("SET_ARRAY", arrayToSort);
       }
+      commit("SET_SORTED", false);
     },
     async insertionSort({ commit, state }, delay) {
       let arrayToSort = state.array;
@@ -93,6 +95,7 @@ export default new Vuex.Store({
         }
         r++;
       }
+      commit("SET_SORTED", false);
     }
   },
   modules: {}
