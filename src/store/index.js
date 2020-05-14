@@ -15,12 +15,16 @@ function swap(array, i, j) {
 
 export default new Vuex.Store({
   state: {
-    array: []
+    array: [],
+    isSorting: false
   },
   mutations: {
     SET_ARRAY(state, newArray) {
       state.array = [];
       state.array = newArray;
+    },
+    SET_SORTED(state, bool) {
+      state.isSorting = bool;
     }
   },
   actions: {
@@ -29,6 +33,7 @@ export default new Vuex.Store({
         Math.floor(Math.random() * 1000)
       );
       commit("SET_ARRAY", array);
+      commit("SET_SORTED", false);
     },
     sort({ dispatch }, sort, delay) {
       if (sort === "Bubble sort") {
@@ -42,6 +47,7 @@ export default new Vuex.Store({
     async bubbleSort({ commit, state }, delay) {
       let arrayToSort = state.array;
       let swapped = true;
+      commit("SET_SORTED", true);
       while (swapped === true) {
         swapped = false;
         for (let index = 0; index < arrayToSort.length; index++) {
@@ -60,6 +66,7 @@ export default new Vuex.Store({
       let arrayToSort = state.array;
       let sortedArrayEnd = 0;
       let lowest = sortedArrayEnd;
+      commit("SET_SORTED", true);
       for (let i = 0; i < arrayToSort.length; i++) {
         if (arrayToSort[lowest] > arrayToSort[i]) lowest = i;
         if (i === arrayToSort.length - 1) {
@@ -75,6 +82,7 @@ export default new Vuex.Store({
     async insertionSort({ commit, state }, delay) {
       let arrayToSort = state.array;
       let r = 1;
+      commit("SET_SORTED", true);
       while (r !== arrayToSort.length) {
         let tracker = r;
         while (arrayToSort[tracker] < arrayToSort[tracker - 1]) {

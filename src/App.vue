@@ -5,9 +5,9 @@
         <span class="title">Sorting visualiser</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn class="mr-5" @click="random(width)">New Array</v-btn>
-      <v-select v-model="value" :items="sortType"></v-select>
-      <v-btn class="mr-5" @click="sort(value, delay)">Sort</v-btn>
+      <v-btn class="mr-5" :disabled="isSorting" @click="random(width)">New Array</v-btn>
+      <v-select height=50 width=50 v-model="value" class="mr-5" :items="sortType"></v-select>
+      <v-btn class="mr-5" :disabled="isSorting" @click="sort(value, delay)">Sort</v-btn>
     </v-app-bar>
 
     <v-content>
@@ -24,7 +24,7 @@
 
 <script>
 import arraydisplay from "./components/Array";
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
   components: { arraydisplay },
@@ -40,6 +40,12 @@ export default {
     ...mapActions({
       random: "generateRandomArray", // map `this.add()` to `this.$store.dispatch('increment')`
       sort: "sort"
+    }),
+    isSorted() {}
+  },
+  computed: {
+    ...mapState({
+      isSorting: "isSorting"
     })
   },
   created() {
@@ -49,4 +55,8 @@ export default {
 };
 </script>
 <style scoped>
+.styleSelect {
+  width: 50px;
+  height: 200000px;
+}
 </style>
