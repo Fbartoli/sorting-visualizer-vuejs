@@ -5,9 +5,27 @@
         <span class="title">Sorting visualiser</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn class="mr-5" :disabled="isSorting" @click="random(width)">New Array</v-btn>
-      <v-select height=50 width=50 v-model="value" class="mr-5" :items="sortType"></v-select>
-      <v-btn class="mr-5" :disabled="isSorting" @click="sort(value, delay)">Sort</v-btn>
+      <v-btn class="mr-5" :disabled="isSorting" @click="random(width)"
+        >New Array</v-btn
+      >
+      <v-radio-group
+      class="mt-5"
+      v-model="value"
+      column=false
+      row=true
+    >
+      <v-radio
+        class="ma-5"
+        v-for="n in sortType"
+        :key="n"
+        :label="`${n}`"
+        :value="n"
+
+      ></v-radio>
+      </v-radio-group>
+      <v-btn class="mr-5" :disabled="isSorting" @click="sort(value, delay)"
+        >Sort</v-btn
+      >
     </v-app-bar>
 
     <v-content>
@@ -33,7 +51,7 @@ export default {
       value: "Bubble sort",
       delay: 10,
       sortType: ["Bubble sort", "Insertion sort", "Selection sort"],
-      width: 10
+      width: 9
     };
   },
   methods: {
@@ -54,9 +72,4 @@ export default {
   }
 };
 </script>
-<style scoped>
-.styleSelect {
-  width: 50px;
-  height: 200000px;
-}
-</style>
+<style scoped></style>

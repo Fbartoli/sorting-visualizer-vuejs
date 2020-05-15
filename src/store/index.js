@@ -30,7 +30,7 @@ export default new Vuex.Store({
   actions: {
     generateRandomArray({ commit }, width) {
       let array = Array.from({ length: window.innerWidth / width + 0.08 }, () =>
-        Math.floor(Math.random() * 1000)
+        Math.floor(Math.random() * 800)
       );
       commit("SET_ARRAY", array);
       commit("SET_SORTED", false);
